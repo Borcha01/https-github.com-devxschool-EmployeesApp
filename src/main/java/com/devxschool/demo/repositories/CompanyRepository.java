@@ -1,15 +1,14 @@
 package com.devxschool.demo.repositories;
 
-import java.util.List;
+import java.util.Optional;
 
 import com.devxschool.demo.domain.Company;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource(collectionResourceRel = "companies", path="companies")
 public interface CompanyRepository extends JpaRepository<Company, Long> {
 
+    Optional<Company> findByName(String name);
 }

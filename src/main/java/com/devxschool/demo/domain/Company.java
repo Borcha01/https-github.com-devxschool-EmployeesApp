@@ -1,7 +1,6 @@
 package com.devxschool.demo.domain;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,23 +11,23 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name="company_name")
+    @Column(name="company_name", unique = true)
     private String name;
 
     @Column(name="website")
     private String webSite;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="company", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy="company")
     List<Employee> employees;
 
-    public void addCompany(Employee emp){
+   /* public void addCompany(Employee emp){
         if(emp!=null){
             if (employees == null)
                 employees = new ArrayList<Employee>();
             employees.add(emp);
             emp.setCompany(this);
         }
-    }
+    }*/
     public String getName() {
         return name;
     }
