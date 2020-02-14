@@ -73,11 +73,16 @@ public class EmployeeController {
     }
 
     @PostMapping("/employees/{id}/incrementsalary/{incrementValue}")
-    public ResponseEntity<Employee> incrementSalary(@PathVariable(value="id") Long employeeId, @PathVariable(value="incrementValue") Long incrementValue) {
+    public ResponseEntity<Employee> incrementSalary(@PathVariable(value = "id") Long employeeId,
+            @PathVariable(value = "incrementValue") Long incrementValue) {
         Employee emp = employeeRepository.incrementSalary(employeeId, Float.parseFloat(incrementValue.toString()));
         return new ResponseEntity<Employee>(emp, HttpStatus.OK);
-     }
-
-
-
+    }
+     
+    @PostMapping("/employees/{id}/decrementsalary/{decrementValue}")
+    public ResponseEntity<Employee> decrementSalary(@PathVariable(value = "id") Long employeeId,
+            @PathVariable(value = "decrementValue") Long decrementValue) {
+        Employee emp = employeeRepository.decrementSalary(employeeId, Float.parseFloat(decrementValue.toString()));
+        return new ResponseEntity<Employee>(emp, HttpStatus.OK);
+    }
 }
